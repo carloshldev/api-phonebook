@@ -1,0 +1,731 @@
+{
+	"info": {
+		"_postman_id": "026a04bf-9828-4c6b-8bdb-b770bbaa7de1",
+		"name": "api-phonebook-exam",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "TokenGenerator",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "73739e23-fb26-474e-b202-7ea845e06c55",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"var token = jsonData.document.access_token;\r",
+							"postman.setEnvironmentVariable(\"token\", token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"username\":\"admin\",\n\"password\":\"admin123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-phonebook.concretoybombeo.com//token/generate.php",
+					"protocol": "https",
+					"host": [
+						"api-phonebook",
+						"concretoybombeo",
+						"com"
+					],
+					"path": [
+						"",
+						"token",
+						"generate.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Contacts - GETALL",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9leGFtcGxlLm9yZyIsImF1ZCI6Imh0dHA6XC9cL2V4YW1wbGUuY29tIiwiZXhwIjoxNTgxMDkwOTk4LCJkYXRhIjpbXX0.c1fyzusJ0YAIjIkzBFKiZEEdTKv2Nswe38GzzoeJXo4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api-phonebook.concretoybombeo.com/contacts/read.php",
+					"protocol": "https",
+					"host": [
+						"api-phonebook",
+						"concretoybombeo",
+						"com"
+					],
+					"path": [
+						"contacts",
+						"read.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Contacts - GETByID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9leGFtcGxlLm9yZyIsImF1ZCI6Imh0dHA6XC9cL2V4YW1wbGUuY29tIiwiZXhwIjoxNTgxMDkwOTk4LCJkYXRhIjpbXX0.c1fyzusJ0YAIjIkzBFKiZEEdTKv2Nswe38GzzoeJXo4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api-phonebook.concretoybombeo.com/contacts/read_one.php?id=1",
+					"protocol": "https",
+					"host": [
+						"api-phonebook",
+						"concretoybombeo",
+						"com"
+					],
+					"path": [
+						"contacts",
+						"read_one.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Contacts - Delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\":\"\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-phonebook.concretoybombeo.com/contacts/delete.php",
+					"protocol": "https",
+					"host": [
+						"api-phonebook",
+						"concretoybombeo",
+						"com"
+					],
+					"path": [
+						"contacts",
+						"delete.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Contacts - Add New",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"\",\"surname\":\"\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-phonebook.concretoybombeo.com/contacts/create.php",
+					"protocol": "https",
+					"host": [
+						"api-phonebook",
+						"concretoybombeo",
+						"com"
+					],
+					"path": [
+						"contacts",
+						"create.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Contacts - Update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"\",\"surname\":\"\",\"id\":\"\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-phonebook.concretoybombeo.com/contacts/update.php",
+					"protocol": "https",
+					"host": [
+						"api-phonebook",
+						"concretoybombeo",
+						"com"
+					],
+					"path": [
+						"contacts",
+						"update.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Emails - GETALL",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api-phonebook.concretoybombeo.com/emails/read.php",
+					"protocol": "https",
+					"host": [
+						"api-phonebook",
+						"concretoybombeo",
+						"com"
+					],
+					"path": [
+						"emails",
+						"read.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Emails - GETByID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api-phonebook.concretoybombeo.com/emails/read_one.php?id=1",
+					"protocol": "https",
+					"host": [
+						"api-phonebook",
+						"concretoybombeo",
+						"com"
+					],
+					"path": [
+						"emails",
+						"read_one.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Emails - Delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id_email\":\"\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-phonebook.concretoybombeo.com/emails/delete.php",
+					"protocol": "https",
+					"host": [
+						"api-phonebook",
+						"concretoybombeo",
+						"com"
+					],
+					"path": [
+						"emails",
+						"delete.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Emails - Add New",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"emails\":\"\",\"contact_id\":\"\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-phonebook.concretoybombeo.com/emails/create.php",
+					"protocol": "https",
+					"host": [
+						"api-phonebook",
+						"concretoybombeo",
+						"com"
+					],
+					"path": [
+						"emails",
+						"create.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Emails - Update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"emails\":\"\",\"contact_id\":\"\",\"id_email\":\"\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-phonebook.concretoybombeo.com/emails/update.php",
+					"protocol": "https",
+					"host": [
+						"api-phonebook",
+						"concretoybombeo",
+						"com"
+					],
+					"path": [
+						"emails",
+						"update.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Phones - GETALL",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api-phonebook.concretoybombeo.com/phones/read.php",
+					"protocol": "https",
+					"host": [
+						"api-phonebook",
+						"concretoybombeo",
+						"com"
+					],
+					"path": [
+						"phones",
+						"read.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Phones - GETByID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api-phonebook.concretoybombeo.com/phones/read_one.php?id=1",
+					"protocol": "https",
+					"host": [
+						"api-phonebook",
+						"concretoybombeo",
+						"com"
+					],
+					"path": [
+						"phones",
+						"read_one.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Phones - Delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id_phone\":\"\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-phonebook.concretoybombeo.com/phones/delete.php",
+					"protocol": "https",
+					"host": [
+						"api-phonebook",
+						"concretoybombeo",
+						"com"
+					],
+					"path": [
+						"phones",
+						"delete.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Phones - Add New",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"phones\":\"\",\"contact_id\":\"\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-phonebook.concretoybombeo.com/phones/create.php",
+					"protocol": "https",
+					"host": [
+						"api-phonebook",
+						"concretoybombeo",
+						"com"
+					],
+					"path": [
+						"phones",
+						"create.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Phones - Update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"phones\":\"\",\"contact_id\":\"\",\"id_phone\":\"\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-phonebook.concretoybombeo.com/phones/update.php",
+					"protocol": "https",
+					"host": [
+						"api-phonebook",
+						"concretoybombeo",
+						"com"
+					],
+					"path": [
+						"phones",
+						"update.php"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
